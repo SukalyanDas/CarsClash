@@ -1,0 +1,909 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CarClash - Vehicle Comparison Showdown</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f7fa;
+            color: #333;
+            line-height: 1.6;
+            transition: all 0.3s ease;
+        }
+        
+        /* Header Styles */
+        header {
+            background: linear-gradient(135deg, #d35400 0%, #e67e22 100%);
+            color: white;
+            padding: 1.5rem 2rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .logo i {
+            font-size: 2rem;
+            color: #2c3e50;
+        }
+        
+        .logo h1 {
+            font-weight: 800;
+            font-size: 2rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        /* Navigation */
+        nav {
+            display: flex;
+            gap: 20px;
+        }
+        
+        .nav-link {
+            color: white;
+            text-decoration: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+            font-weight: 600;
+        }
+        
+        .nav-link:hover, .nav-link.active {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+        
+        /* Page Container */
+        .page-container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 20px;
+            min-height: 70vh;
+        }
+        
+        /* Page Styles */
+        .page {
+            display: none;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+        
+        .page.active {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Home Page */
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 5rem 2rem;
+            border-radius: 15px;
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .hero h2 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+        
+        .hero p {
+            font-size: 1.4rem;
+            max-width: 700px;
+            margin: 0 auto 2rem;
+        }
+        
+        .btn {
+            background-color: #e67e22;
+            color: white;
+            padding: 14px 30px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 700;
+            display: inline-block;
+            transition: all 0.3s;
+            border: 2px solid #e67e22;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .btn:hover {
+            background-color: transparent;
+            color: #e67e22;
+        }
+        
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-bottom: 3rem;
+        }
+        
+        .feature-card {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            text-align: center;
+            transition: transform 0.3s;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .feature-card i {
+            font-size: 3.5rem;
+            color: #e67e22;
+            margin-bottom: 20px;
+        }
+        
+        .feature-card h3 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+        }
+        
+        /* Browse Cars Page */
+        .page-title {
+            font-size: 2.5rem;
+            color: #2c3e50;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+        
+        .page-subtitle {
+            font-size: 1.2rem;
+            color: #7f8c8d;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+        
+        .controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+            gap: 15px;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+        }
+        
+        .filter-section {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+        
+        select {
+            padding: 12px 15px;
+            border-radius: 8px;
+            border: 2px solid #ddd;
+            background-color: white;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: border-color 0.3s;
+        }
+        
+        select:focus {
+            border-color: #e67e22;
+            outline: none;
+        }
+        
+        .compare-btn {
+            background-color: #e67e22;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 700;
+            transition: background-color 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .compare-btn:hover {
+            background-color: #d35400;
+        }
+        
+        .cars-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 3rem;
+        }
+        
+        .car-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            position: relative;
+        }
+        
+        .car-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .car-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: #e67e22;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            z-index: 10;
+        }
+        
+        .car-image {
+            height: 200px;
+            overflow: hidden;
+        }
+        
+        .car-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .car-card:hover .car-image img {
+            transform: scale(1.1);
+        }
+        
+        .car-details {
+            padding: 25px;
+        }
+        
+        .car-title {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .car-title h2 {
+            font-size: 1.4rem;
+            color: #2c3e50;
+        }
+        
+        .car-price {
+            font-weight: 800;
+            color: #e74c3c;
+            font-size: 1.3rem;
+        }
+        
+        .car-specs {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .spec {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.95rem;
+        }
+        
+        .spec i {
+            color: #e67e22;
+            font-size: 1.2rem;
+        }
+        
+        .select-car {
+            display: flex;
+            justify-content: center;
+            margin-top: 15px;
+        }
+        
+        .select-checkbox {
+            transform: scale(1.5);
+            cursor: pointer;
+            margin-right: 10px;
+        }
+        
+        /* Comparison Page */
+        .comparison-section {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            margin-bottom: 3rem;
+            padding: 30px;
+        }
+        
+        .comparison-title {
+            font-size: 2rem;
+            color: #2c3e50;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid #e67e22;
+            text-align: center;
+        }
+        
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        .comparison-table th, .comparison-table td {
+            padding: 18px 20px;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .comparison-table th {
+            background-color: #f8f9fa;
+            font-weight: 700;
+            width: 20%;
+            font-size: 1.1rem;
+        }
+        
+        .car-header {
+            background-color: #fff4e6;
+            font-weight: 700;
+            text-align: center;
+            vertical-align: top;
+        }
+        
+        .car-header img {
+            width: 100%;
+            max-width: 220px;
+            height: auto;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .spec-value {
+            text-align: center;
+            font-weight: 500;
+        }
+        
+        .winner {
+            background-color: #e8f5e9;
+            color: #27ae60;
+            font-weight: 700;
+            position: relative;
+        }
+        
+        .winner::after {
+            content: "✓ Winner";
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            font-size: 0.7rem;
+            background: #27ae60;
+            color: white;
+            padding: 3px 8px;
+            border-radius: 20px;
+        }
+        
+        /* About Page */
+        .about-content {
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            margin-bottom: 3rem;
+        }
+        
+        .about-content h2 {
+            color: #2c3e50;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid #e67e22;
+            font-size: 2rem;
+        }
+        
+        .about-content h3 {
+            color: #e67e22;
+            margin: 25px 0 15px;
+            font-size: 1.5rem;
+        }
+        
+        .about-content p {
+            margin-bottom: 20px;
+            line-height: 1.8;
+            font-size: 1.1rem;
+        }
+        
+        .about-content ul {
+            margin-left: 30px;
+            margin-bottom: 20px;
+        }
+        
+        .about-content li {
+            margin-bottom: 10px;
+            line-height: 1.6;
+        }
+        
+        /* Footer */
+        footer {
+            background: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 3rem 2rem;
+            margin-top: 3rem;
+        }
+        
+        footer p {
+            margin-bottom: 1rem;
+            line-height: 1.6;
+        }
+        
+        footer p:last-child {
+            margin-top: 2rem;
+            font-style: italic;
+            opacity: 0.8;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 900px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+                gap: 15px;
+            }
+            
+            nav {
+                justify-content: center;
+                flex-wrap: wrap;
+            }
+            
+            .cars-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            }
+            
+            .controls {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            
+            .filter-section {
+                flex-direction: column;
+            }
+            
+            .comparison-table {
+                display: block;
+                overflow-x: auto;
+            }
+        }
+        
+        @media (max-width: 600px) {
+            .hero h2 {
+                font-size: 2.2rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+            
+            .features {
+                grid-template-columns: 1fr;
+            }
+            
+            .cars-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .car-specs {
+                grid-template-columns: 1fr;
+            }
+            
+            .page-title {
+                font-size: 2rem;
+            }
+            
+            .about-content {
+                padding: 25px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <div class="logo">
+                <i class="fas fa-car-crash"></i>
+                <h1>CarClash</h1>
+                <span class="byline">by Sukalyan Das</span>
+            </div>
+            <nav>
+                <a href="#home" class="nav-link active" data-page="home">Home</a>
+                <a href="#browse" class="nav-link" data-page="browse">Browse Cars</a>
+                <a href="#compare" class="nav-link" data-page="compare">Compare</a>
+                <a href="stats.html" class="nav-link" id="stats-link">Market Stats</a>
+                <a href="#about" class="nav-link" data-page="about">About</a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="page-container">
+        <!-- Home Page -->
+        <div id="home" class="page active">
+            <div class="hero">
+                <h2>Find Your Perfect Car</h2>
+                <p>Compare specifications, prices, and features in the ultimate vehicle showdown</p>
+                <a href="#browse" class="btn" data-page="browse">Start Comparing</a>
+            </div>
+            
+            <div class="features">
+                <div class="feature-card">
+                    <i class="fas fa-search"></i>
+                    <h3>Find Cars</h3>
+                    <p>Browse through our extensive collection of vehicles from various manufacturers</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-exchange-alt"></i>
+                    <h3>Compare</h3>
+                    <p>Select multiple cars to compare their specifications side by side</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-trophy"></i>
+                    <h3>Decide</h3>
+                    <p>Make informed decisions with detailed comparisons and highlighted winners</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Browse Cars Page -->
+        <div id="browse" class="page">
+            <h2 class="page-title">Browse Cars</h2>
+            <p class="page-subtitle">Select vehicles to compare their specifications and features</p>
+            
+            <div class="controls">
+                <div class="filter-section">
+                    <select id="type-filter">
+                        <option value="all">All Types</option>
+                        <option value="suv">SUV</option>
+                        <option value="sedan">Sedan</option>
+                        <option value="truck">Truck</option>
+                        <option value="electric">Electric</option>
+                    </select>
+                    
+                    <select id="price-filter">
+                        <option value="all">Any Price</option>
+                        <option value="low">Under $30,000</option>
+                        <option value="medium">$30,000 - $50,000</option>
+                        <option value="high">Over $50,000</option>
+                    </select>
+                    
+                    <select id="brand-filter">
+                        <option value="all">All Brands</option>
+                        <option value="toyota">Toyota</option>
+                        <option value="ford">Ford</option>
+                        <option value="honda">Honda</option>
+                        <option value="tesla">Tesla</option>
+                    </select>
+                </div>
+
+                
+                <button class="compare-btn" id="compare-button">
+                    <i class="fas fa-exchange-alt"></i> Compare Selected Cars
+                </button>
+               
+            </div>
+            
+            <div class="cars-grid" id="cars-container">
+                <!-- Car cards will be generated here -->
+            </div>
+        </div>
+        
+        <!-- Compare Page -->
+        <div id="compare" class="page">
+            <h2 class="page-title">Car Comparison</h2>
+            <p class="page-subtitle">Detailed side-by-side comparison of selected vehicles</p>
+            
+            <div class="comparison-section" id="comparison-section">
+                <h3 class="comparison-title">Comparison Results</h3>
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>Specification</th>
+                            <!-- Car names will be added here dynamically -->
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Comparison data will be added here dynamically -->
+                    </tbody>
+                </table>
+            </div>
+            
+            <div style="text-align: center; margin-top: 30px;">
+                <a href="#browse" class="btn" data-page="browse">Select More Cars</a>
+            </div>
+        </div>
+        
+        <!-- About Page -->
+        <div id="about" class="page">
+            <h2 class="page-title">About CarClash</h2>
+            <p class="page-subtitle">Learn more about our mission and how to use our comparison tool</p>
+            
+            <div class="about-content">
+                <h3>Our Mission</h3>
+                <p>CarClash was created to help car buyers make informed decisions by providing a comprehensive comparison tool that highlights the differences between vehicles. We believe that everyone should have access to clear, unbiased information when making such an important purchase.</p>
+                
+                <h3>How to Use</h3>
+                <p>1. Navigate to the Browse Cars page to see our selection of vehicles</p>
+                <p>2. Use the filters to narrow down your search by type, price range, or brand</p>
+                <p>3. Select the cars you want to compare by checking the comparison boxes</p>
+                <p>4. Click the "Compare Selected Cars" button to see a detailed side-by-side comparison</p>
+                <p>5. Analyze the results to determine which vehicle best meets your needs</p>
+                
+                <h3>Data Sources</h3>
+                <p>Our vehicle data is sourced from manufacturer specifications and is regularly updated to ensure accuracy. All prices are based on manufacturer suggested retail price (MSRP) and may vary by dealer.</p>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>CarClash &copy; 2023 | Compare your favorite vehicles side by side</p>
+        <p>Created with passion, this page is designed for anyone who loves cars and wants to make smart, informed choices before buying. We believe that knowledge is the key to driving satisfaction, and we're here to make that process easier for you.</p>
+        <p>Join us on the journey to find your ideal car, and let's make every drive count!</p>
+    </footer>
+
+    <!-- Import car data from external file -->
+    <script src="cars-data.js"></script>
+    
+    <script>
+
+        // DOM elements
+        const carsContainer = document.getElementById('cars-container');
+        const typeFilter = document.getElementById('type-filter');
+        const priceFilter = document.getElementById('price-filter');
+        const brandFilter = document.getElementById('brand-filter');
+        const compareButton = document.getElementById('compare-button');
+        const comparisonSection = document.getElementById('comparison-section');
+        const comparisonTable = document.querySelector('.comparison-table');
+        const navLinks = document.querySelectorAll('.nav-link');
+        const pages = document.querySelectorAll('.page');
+
+        // Initialize the page with cars
+        function renderCars(carsToRender) {
+            carsContainer.innerHTML = '';
+            
+            if (carsToRender.length === 0) {
+                carsContainer.innerHTML = '<p style="grid-column: 1 / -1; text-align: center; padding: 40px; font-size: 1.2rem;">No cars match your selected filters. Please try different criteria.</p>';
+                return;
+            }
+            
+            carsToRender.forEach(car => {
+                const carCard = document.createElement('div');
+                carCard.className = 'car-card';
+                carCard.innerHTML = `
+                    <div class="car-badge">${car.type.toUpperCase()}</div>
+                    <div class="car-image">
+                        <img src="${car.image}" alt="${car.name}">
+                    </div>
+                    <div class="car-details">
+                        <div class="car-title">
+                            <h2>${car.name}</h2>
+                            <div class="car-price">$${car.price.toLocaleString()}</div>
+                        </div>
+                        <div class="car-specs">
+                            <div class="spec">
+                                <i class="fas fa-tachometer-alt"></i>
+                                <span>${car.specs.horsepower} HP</span>
+                            </div>
+                            <div class="spec">
+                                <i class="fas fa-gas-pump"></i>
+                                <span>${car.specs.mpg}</span>
+                            </div>
+                            <div class="spec">
+                                <i class="fas fa-cogs"></i>
+                                <span>${car.specs.engine}</span>
+                            </div>
+                            <div class="spec">
+                                <i class="fas fa-road"></i>
+                                <span>${car.specs.drive}</span>
+                            </div>
+                        </div>
+                        <div class="select-car">
+                            <input type="checkbox" class="select-checkbox" data-car-id="${car.id}">
+                            <label>Select for comparison</label>
+                        </div>
+                    </div>
+                `;
+                carsContainer.appendChild(carCard);
+            });
+        }
+
+        // Filter cars based on selections
+        function filterCars() {
+            const typeValue = typeFilter.value;
+            const priceValue = priceFilter.value;
+            const brandValue = brandFilter.value;
+            
+            const filteredCars = cars.filter(car => {
+                // Type filter
+                if (typeValue !== 'all' && car.type !== typeValue) return false;
+                
+                // Brand filter
+                if (brandValue !== 'all' && car.brand !== brandValue) return false;
+                
+                // Price filter
+                if (priceValue !== 'all') {
+                    if (priceValue === 'low' && car.price >= 30000) return false;
+                    if (priceValue === 'medium' && (car.price < 30000 || car.price > 50000)) return false;
+                    if (priceValue === 'high' && car.price <= 50000) return false;
+                }
+                
+                return true;
+            });
+            
+            renderCars(filteredCars);
+        }
+
+        // Compare selected cars
+        function compareCars() {
+            const selectedCheckboxes = document.querySelectorAll('.select-checkbox:checked');
+            
+            if (selectedCheckboxes.length < 2) {
+                alert('Please select at least 2 cars to compare');
+                return;
+            }
+            
+            const selectedCarIds = Array.from(selectedCheckboxes).map(checkbox => parseInt(checkbox.dataset.carId));
+            const selectedCars = cars.filter(car => selectedCarIds.includes(car.id));
+            
+            // Build comparison table
+            let tableHTML = `
+                <thead>
+                    <tr>
+                        <th>Specification</th>
+            `;
+            
+            // Add car names to header
+            selectedCars.forEach(car => {
+                tableHTML += `<th class="car-header">
+                    <img src="${car.image}" alt="${car.name}">
+                    <div>${car.name}</div>
+                    <div class="car-price">$${car.price.toLocaleString()}</div>
+                </th>`;
+            });
+            
+            tableHTML += `</tr></thead><tbody>`;
+            
+            // Add specifications rows
+            const specKeys = Object.keys(selectedCars[0].specs);
+            
+            specKeys.forEach(spec => {
+                tableHTML += `<tr><th>${spec.charAt(0).toUpperCase() + spec.slice(1)}</th>`;
+                
+                // Find best value for this spec (for highlighting)
+                let bestValue = null;
+                if (spec === 'horsepower') {
+                    bestValue = Math.max(...selectedCars.map(car => parseInt(car.specs[spec])));
+                } else if (spec === 'mpg') {
+                    // Extract numeric value from MPG string
+                    const mpgValues = selectedCars.map(car => {
+                        const match = car.specs[spec].match(/\d+/);
+                        return match ? parseInt(match[0]) : 0;
+                    });
+                    bestValue = Math.max(...mpgValues);
+                }
+                
+                selectedCars.forEach(car => {
+                    let value = car.specs[spec];
+                    let isWinner = false;
+                    
+                    if (spec === 'horsepower' && parseInt(value) === bestValue) {
+                        isWinner = true;
+                    } else if (spec === 'mpg') {
+                        const match = value.match(/\d+/);
+                        if (match && parseInt(match[0]) === bestValue) {
+                            isWinner = true;
+                        }
+                    }
+                    
+                    tableHTML += `<td class="spec-value ${isWinner ? 'winner' : ''}">${value}</td>`;
+                });
+                
+                tableHTML += `</tr>`;
+            });
+            
+            tableHTML += `</tbody>`;
+            
+            comparisonTable.innerHTML = tableHTML;
+            
+            // Navigate to comparison page
+            navigateToPage('compare');
+        }
+
+        // Navigation functions
+        function navigateToPage(pageId) {
+            // Update active page
+            pages.forEach(page => {
+                page.classList.remove('active');
+            });
+            document.getElementById(pageId).classList.add('active');
+            
+            // Update active nav link
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('data-page') === pageId) {
+                    link.classList.add('active');
+                }
+            });
+            
+            // Scroll to top
+            window.scrollTo(0, 0);
+        }
+
+        // Event listeners
+        typeFilter.addEventListener('change', filterCars);
+        priceFilter.addEventListener('change', filterCars);
+        brandFilter.addEventListener('change', filterCars);
+        compareButton.addEventListener('click', compareCars);
+
+        // Navigation event listeners
+        navLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                 if (link.id === 'stats-link') 
+            {
+            // Allow default behavior (navigation to stats.html)
+            return;
+            }
+                e.preventDefault();
+                navigateToPage(link.getAttribute('data-page'));
+            });
+        });
+
+        // Button event listeners
+        document.querySelectorAll('.btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                if (btn.hasAttribute('data-page')) {
+                    e.preventDefault();
+                    navigateToPage(btn.getAttribute('data-page'));
+                }
+            });
+        });
+
+        // Initial render
+        renderCars(cars);
+    </script>
+</body>
+</html>

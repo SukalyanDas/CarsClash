@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Car Market Statistics - CarClash</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f7fa;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        /* Header Styles */
+        header {
+            background: linear-gradient(135deg, #d35400 0%, #e67e22 100%);
+            color: white;
+            padding: 1.5rem 2rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .logo i {
+            font-size: 2rem;
+            color: #2c3e50;
+        }
+        
+        .logo h1 {
+            font-weight: 800;
+            font-size: 2rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        /* Navigation */
+        nav {
+            display: flex;
+            gap: 20px;
+        }
+        
+        .nav-link {
+            color: white;
+            text-decoration: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+            font-weight: 600;
+        }
+        
+        .nav-link:hover, .nav-link.active {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+        
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 20px;
+        }
+        
+        /* Page Title */
+        .page-title {
+            font-size: 2.5rem;
+            color: #2c3e50;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+        
+        .page-subtitle {
+            font-size: 1.2rem;
+            color: #7f8c8d;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+        
+        /* Stats Grid */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+            gap: 25px;
+            margin-bottom: 3rem;
+        }
+        
+        .stat-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            padding: 25px;
+            transition: transform 0.3s;
+        }
+        
+        .stat-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .stat-card h3 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #e67e22;
+            font-size: 1.4rem;
+        }
+        
+        .chart-container {
+            position: relative;
+            height: 300px;
+            width: 100%;
+        }
+        
+        /* Facts Section */
+        .facts-section {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            margin-bottom: 3rem;
+        }
+        
+        .facts-section h2 {
+            color: #2c3e50;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid #e67e22;
+            font-size: 2rem;
+            text-align: center;
+        }
+        
+        .facts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        
+        .fact-card {
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 8px;
+            text-align: center;
+            transition: transform 0.3s;
+        }
+        
+        .fact-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .fact-card i {
+            font-size: 2.5rem;
+            color: #e67e22;
+            margin-bottom: 15px;
+        }
+        
+        .fact-card h3 {
+            color: #2c3e50;
+            margin-bottom: 10px;
+            font-size: 1.3rem;
+        }
+        
+        .fact-card p {
+            line-height: 1.6;
+        }
+        
+        /* Home Button */
+        .home-btn-container {
+            text-align: center;
+            margin: 30px 0;
+        }
+        
+        .home-btn {
+            background-color: #e67e22;
+            color: white;
+            padding: 14px 30px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 700;
+            display: inline-block;
+            transition: all 0.3s;
+            border: 2px solid #e67e22;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .home-btn:hover {
+            background-color: transparent;
+            color: #e67e22;
+        }
+        
+        /* Footer */
+        footer {
+            background: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 3rem 2rem;
+            margin-top: 3rem;
+        }
+        
+        footer p {
+            margin-bottom: 1rem;
+            line-height: 1.6;
+        }
+        
+        footer p:last-child {
+            margin-top: 2rem;
+            font-style: italic;
+            opacity: 0.8;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 900px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+                gap: 15px;
+            }
+            
+            nav {
+                justify-content: center;
+                flex-wrap: wrap;
+            }
+            
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @media (max-width: 600px) {
+            .page-title {
+                font-size: 2rem;
+            }
+            
+            .facts-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .stat-card {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <div class="logo">
+                <i class="fas fa-car-crash"></i>
+                <h1>CarClash</h1>
+                <span class="byline">by Sukalyan Das</span>
+            </div>
+            <nav>
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="stats.html" class="nav-link active">Market Stats</a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container">
+        <h2 class="page-title">Global Automotive Market Statistics</h2>
+        <p class="page-subtitle">Explore interesting facts and figures about the automotive industry worldwide</p>
+        
+        <div class="stats-grid">
+            <div class="stat-card">
+                <h3>Global Market Share by Manufacturer</h3>
+                <div class="chart-container">
+                    <canvas id="marketShareChart"></canvas>
+                </div>
+            </div>
+            
+            <div class="stat-card">
+                <h3>Electric Vehicle Adoption by Region</h3>
+                <div class="chart-container">
+                    <canvas id="evAdoptionChart"></canvas>
+                </div>
+            </div>
+            
+            <div class="stat-card">
+                <h3>Vehicle Type Popularity</h3>
+                <div class="chart-container">
+                    <canvas id="vehicleTypeChart"></canvas>
+                </div>
+            </div>
+            
+            <div class="stat-card">
+                <h3>Top Selling Models Worldwide</h3>
+                <div class="chart-container">
+                    <canvas id="topModelsChart"></canvas>
+                </div>
+            </div>
+        </div>
+        
+        <div class="facts-section">
+            <h2>Interesting Automotive Facts</h2>
+            <div class="facts-grid">
+                <div class="fact-card">
+                    <i class="fas fa-bolt"></i>
+                    <h3>EV Growth</h3>
+                    <p>Electric vehicle sales increased by over 60% worldwide in 2022 compared to 2021.</p>
+                </div>
+                
+                <div class="fact-card">
+                    <i class="fas fa-globe-americas"></i>
+                    <h3>Global Production</h3>
+                    <p>China is the world's largest car manufacturer, producing over 25 million vehicles annually.</p>
+                </div>
+                
+                <div class="fact-card">
+                    <i class="fas fa-robot"></i>
+                    <h3>Autonomous Driving</h3>
+                    <p>Over 70% of new vehicles sold in 2023 feature some level of autonomous driving capability.</p>
+                </div>
+                
+                <div class="fact-card">
+                    <i class="fas fa-car-battery"></i>
+                    <h3>Battery Costs</h3>
+                    <p>EV battery costs have fallen by 89% over the past decade, making electric cars more affordable.</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="home-btn-container">
+            <a href="index.html" class="home-btn">
+                <i class="fas fa-home"></i> Back to Car Comparison
+            </a>
+        </div>
+    </div>
+
+    <footer>
+        <p>CarClash &copy; 2023 | Compare your favorite vehicles side by side</p>
+        <p>Created with passion by Sukalyan Das, this page is designed for anyone who loves cars and wants to make smart, informed choices before buying. We believe that knowledge is the key to driving satisfaction, and we're here to make that process easier for you.</p>
+        <p>Join us on the journey to find your ideal car, and let's make every drive count!</p>
+    </footer>
+
+    <script>
+        // Market Share Data
+        const marketShareData = {
+            labels: ['Toyota', 'Volkswagen', 'Stellantis', 'Hyundai-Kia', 'GM', 'Ford', 'Honda', 'Nissan', 'BMW', 'Others'],
+            datasets: [{
+                data: [10.5, 9.8, 8.2, 7.9, 7.2, 6.8, 5.9, 5.3, 3.5, 34.9],
+                backgroundColor: [
+                    '#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0', '#9966FF',
+                    '#FF9F40', '#FF6384', '#C9CBCF', '#4BC0C0', '#E7E9ED'
+                ]
+            }]
+        };
+        
+        // EV Adoption Data
+        const evAdoptionData = {
+            labels: ['China', 'Europe', 'United States', 'Rest of World'],
+            datasets: [{
+                label: 'EV Sales (millions)',
+                data: [5.5, 3.2, 1.8, 1.5],
+                backgroundColor: '#e67e22'
+            }]
+        };
+        
+        // Vehicle Type Data
+        const vehicleTypeData = {
+            labels: ['SUV', 'Sedan', 'Truck', 'Hatchback', 'Electric'],
+            datasets: [{
+                label: 'Market Share (%)',
+                data: [45, 25, 15, 10, 5],
+                backgroundColor: [
+                    '#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0', '#e67e22'
+                ]
+            }]
+        };
+        
+        // Top Models Data
+        const topModelsData = {
+            labels: ['Toyota RAV4', 'Honda CR-V', 'Ford F-Series', 'Toyota Corolla', 'Tesla Model Y'],
+            datasets: [{
+                label: 'Global Sales (millions)',
+                data: [1.2, 1.1, 1.0, 0.9, 0.8],
+                backgroundColor: '#4BC0C0'
+            }]
+        };
+        
+        // Initialize charts when page loads
+        window.addEventListener('load', function() {
+            // Market Share Chart (Doughnut)
+            new Chart(document.getElementById('marketShareChart'), {
+                type: 'doughnut',
+                data: marketShareData,
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            position: 'right'
+                        }
+                    }
+                }
+            });
+            
+            // EV Adoption Chart (Bar)
+            new Chart(document.getElementById('evAdoptionChart'), {
+                type: 'bar',
+                data: evAdoptionData,
+                options: {
+                    responsive: true,
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+            
+            // Vehicle Type Chart (Pie)
+            new Chart(document.getElementById('vehicleTypeChart'), {
+                type: 'pie',
+                data: vehicleTypeData,
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            position: 'bottom'
+                        }
+                    }
+                }
+            });
+            
+            // Top Models Chart (Horizontal Bar)
+            new Chart(document.getElementById('topModelsChart'), {
+                type: 'bar',
+                data: topModelsData,
+                options: {
+                    indexAxis: 'y',
+                    responsive: true,
+                    scales: {
+                        x: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
