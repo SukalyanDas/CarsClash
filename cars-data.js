@@ -58,7 +58,7 @@ const cars = [
         type: "sedan",
         brand: "lexus",
         price: 42260,
-        image: "https://images.unsplash.com/photo-1614200187527-327a5b6be6e7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+        image: "https://images.unsplash.com/photo-1751982998942-dce5c9f4c95d?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8bGV4dXMlMjBlc3xlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&q=60&w=900",
         specs: {
             engine: "3.5L V6",
             horsepower: 302,
@@ -75,7 +75,7 @@ const cars = [
         type: "sedan",
         brand: "genesis",
         price: 78950,
-        image: "https://images.unsplash.com/photo-1606664515524-ed2f786a0bd6?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+        image: "https://images.unsplash.com/photo-1650256213562-487db281610b?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=2070",
         specs: {
             engine: "3.5L Twin-Turbo V6",
             horsepower: 375,
@@ -93,7 +93,7 @@ const cars = [
         type: "suv",
         brand: "bmw",
         price: 60700,
-        image: "https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+        image: "https://images.unsplash.com/photo-1615908397724-6dc711db34a7?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8Yk1XJTIwWDV8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&q=60&w=900",
         specs: {
             engine: "3.0L Turbo 6-cylinder",
             horsepower: 335,
@@ -110,7 +110,7 @@ const cars = [
         type: "suv",
         brand: "mercedes",
         price: 57750,
-        image: "https://images.unsplash.com/photo-1614200187527-327a5b6be6e7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+        image: "https://images.unsplash.com/photo-1732347700505-e1231e0f7c94?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=2070",
         specs: {
             engine: "2.0L Turbo 4-cylinder",
             horsepower: 255,
@@ -127,7 +127,7 @@ const cars = [
         type: "suv",
         brand: "audi",
         price: 57750,
-        image: "https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+        image: "https://images.unsplash.com/photo-1532974143451-8162d38a1257?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8YXVkaSUyMFE3fGVufDB8fDB8fHww&auto=format&fit=crop&q=60&w=900",
         specs: {
             engine: "2.0L Turbo 4-cylinder",
             horsepower: 248,
@@ -144,7 +144,7 @@ const cars = [
         type: "suv",
         brand: "lexus",
         price: 46500,
-        image: "https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+        image: "https://images.unsplash.com/photo-1698122660387-64acb063dabe?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8TGV4dXMlMjBSWHxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&q=60&w=900",
         specs: {
             engine: "2.4L Turbo 4-cylinder",
             horsepower: 275,
@@ -161,7 +161,7 @@ const cars = [
         type: "suv",
         brand: "cadillac",
         price: 78890,
-        image: "https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+        image: "https://images.unsplash.com/photo-1735620731955-b047a7122892?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8Q2FkaWxsYWMlMjBFc2NhbGFkZXxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&q=60&w=900",
         specs: {
             engine: "6.2L V8",
             horsepower: 420,
@@ -196,7 +196,7 @@ const cars = [
         type: "sedan",
         brand: "honda",
         price: 22850,
-        image: "https://images.unsplash.com/photo-1580273916550-e323be2ae537?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80",
+        image: "https://images.unsplash.com/photo-1636915860623-57b9b74133e6?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8SG9uZGElMjBDaXZpY3xlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&q=60&w=900",
         specs: {
             engine: "2.0L 4-cylinder",
             horsepower: 158,
@@ -230,7 +230,7 @@ const cars = [
         type: "sedan",
         brand: "hyundai",
         price: 20645,
-        image: "https://images.unsplash.com/photo-1624578571415-09e9b1991929?q=80&w=990&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        image: "https://images.unsplash.com/photo-1728031401344-40811b71840c?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjR8fEh5dW5kYWklMjBFbGFudHJhfGVufDB8fDB8fHww&auto=format&fit=crop&q=60&w=900",
         specs: {
             engine: "2.0L 4-cylinder",
             horsepower: 147,
@@ -247,7 +247,7 @@ const cars = [
         type: "sedan",
         brand: "kia",
         price: 19590,
-        image: "https://images.unsplash.com/photo-1624578571415-09e9b1991929?q=80&w=990&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        image: "https://images.unsplash.com/photo-1546704167-c94195462e9c?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8S2lhJTIwRm9ydGV8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&q=60&w=900",
         specs: {
             engine: "2.0L 4-cylinder",
             horsepower: 147,
@@ -265,7 +265,7 @@ const cars = [
         type: "suv",
         brand: "toyota",
         price: 32575,
-        image: "https://images.unsplash.com/photo-1632137924251-fcea5ff46035?q=80&w=2072&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        image: "https://images.unsplash.com/photo-1632137924251-fcea5ff46035?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fFRveW90YSUyMFJBVjR8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&q=60&w=900",
         specs: {
             engine: "2.5L 4-cylinder",
             horsepower: 203,
@@ -299,7 +299,7 @@ const cars = [
         type: "suv",
         brand: "nissan",
         price: 32910,
-        image: "https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+        image: "https://images.unsplash.com/photo-1734760768799-173232fe4cef?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8Tmlzc2FuJTIwUm9ndWV8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&q=60&w=900",
         specs: {
             engine: "2.5L 4-cylinder",
             horsepower: 181,
@@ -316,7 +316,7 @@ const cars = [
         type: "suv",
         brand: "mazda",
         price: 29550,
-        image: "https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+        image: "https://images.unsplash.com/photo-1713924787703-ed674cef7807?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8TWF6ZGElMjBDWC01fGVufDB8fDB8fHww&auto=format&fit=crop&q=60&w=900",
         specs: {
             engine: "2.5L 4-cylinder",
             horsepower: 187,
@@ -333,7 +333,7 @@ const cars = [
         type: "suv",
         brand: "subaru",
         price: 26995,
-        image: "https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+        image: "https://images.unsplash.com/photo-1722542517938-aa6a98d25235?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8U3ViYXJ1JTIwRm9yZXN0ZXJ8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&q=60&w=900",
         specs: {
             engine: "2.5L 4-cylinder",
             horsepower: 182,
