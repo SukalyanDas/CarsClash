@@ -25,6 +25,9 @@ This document describes the TensorFlow.js implementation added to the CarClash p
   - Vehicle Type: Sedan (0), SUV (0.33), Truck (0.66), Electric (1)
   - Drive Type: FWD (0), RWD (0.5), AWD (1)
   - Brand Category: Economy (0), Luxury (0.5), Premium (1)
+    - Economy: Toyota, Honda, Nissan, Hyundai, Kia, Mazda, Subaru, Ford
+    - Luxury: BMW, Mercedes, Audi, Tesla
+    - Premium: Lexus, Cadillac, Genesis
 
 ### 4. **Model Training**
 - **Training Parameters**:
