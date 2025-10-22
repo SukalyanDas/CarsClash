@@ -22,6 +22,7 @@
                 <a href="#browse" class="nav-link" data-page="browse">Browse Cars</a>
                 <a href="#compare" class="nav-link" data-page="compare">Compare</a>
                 <a href="#predictor" class="nav-link" data-page="predictor">Price Predictor</a>
+                <a href="matchmaker.html" class="nav-link" id="matchmaker-link">Car Matchmaker</a>
                 <a href="stats.html" class="nav-link" id="stats-link">Market Stats</a>
                 <a href="#about" class="nav-link" data-page="about">About</a>
             </nav>
@@ -57,6 +58,11 @@
                     <i class="fas fa-brain"></i>
                     <h3>AI Price Prediction</h3>
                     <p>Use our TensorFlow.js powered model to predict car prices based on specifications</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-heart"></i>
+                    <h3>Car Matchmaker</h3>
+                    <p>Find your perfect car match with our AI-powered personality quiz and recommendation engine</p>
                 </div>
             </div>
         </div>
@@ -471,9 +477,9 @@
         // Navigation event listeners
         navLinks.forEach(link => {
             link.addEventListener('click', (e) => {
-                 if (link.id === 'stats-link') 
+                 if (link.id === 'stats-link' || link.id === 'matchmaker-link') 
             {
-            // Allow default behavior (navigation to stats.html)
+            // Allow default behavior (navigation to external pages)
             return;
             }
                 e.preventDefault();
