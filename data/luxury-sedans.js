@@ -57,7 +57,7 @@ const luxurySedans = [
         type: "sedan",
         brand: "lexus",
         price: 42260,
-        image: "https://images.unsplash.com/photo-1614200187527-327a5b6be6e7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+        image: "https://images.unsplash.com/photo-1751982998942-dce5c9f4c95d?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8bGV4dXMlMjBlc3xlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&q=60&w=900",
         specs: {
             engine: "3.5L V6",
             horsepower: 302,
